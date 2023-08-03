@@ -3,12 +3,12 @@
 Using mypy to validate the following piece of code and apply
 any necessary changes.
 """
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 
-def zoom_array(lst: Tuple, factor: int = 2) -> List:
+def zoom_array(lst: List[int], factor: Union[int, float] = 2) -> List[int]:
     """validating the code using mypy"""
-    zoomed_in: List = [item for item in lst for i in range(int(factor))]
+    zoomed_in: List[int] = [item for item in lst for i in range(int(factor))]
     return zoomed_in
 
 
