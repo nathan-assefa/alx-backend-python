@@ -3,17 +3,21 @@
 Using mypy to validate the following piece of code and apply
 any necessary changes.
 """
-from typing import List, Tuple, Union
+from typing import List, Tuple
 
 
-def zoom_array(lst: List[int], factor: Union[int, float] = 2) -> List[int]:
-    """validating the code using mypy"""
-    zoomed_in: List[int] = [item for item in lst for i in range(int(factor))]
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """Returns a list of integers multiplied by certain factor.
+    """
+    zoomed_in: List = [
+        item for item in lst
+        for i in range(factor)
+    ]
     return zoomed_in
 
 
-array = [12, 72, 91]
+array: Tuple = (12, 72, 91)
 
 zoom_2x = zoom_array(array)
 
-zoom_3x = zoom_array(array, 3.0)
+zoom_3x = zoom_array(array, 3)
