@@ -3,8 +3,6 @@
 Using mypy to validate the following piece of code and apply
 any necessary changes.
 """
-
-
 from typing import List, Tuple
 
 
