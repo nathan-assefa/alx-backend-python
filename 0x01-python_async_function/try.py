@@ -1,17 +1,15 @@
-#!/usr/bin/env python3
-"""
-write an async routine called wait_n that takes in 2 int
-arguments (in this order): n and max_delay
-"""
 import asyncio
-from typing import List
 
+async def task_one():
+    await asyncio.sleep(5)
+    return "Task One Completed"
 
-wait_random = __import__('0-basic_async_syntax').wait_random
+async def task_two():
+    await asyncio.sleep(1)
+    return "Task Two Completed"
 
+async def main():
+    tasks = await asyncio.gather(task_one(), task_two())
+    print(tasks)
 
-async def wait_n(n: int, max_delay: int) -> List[float]:
-    """ returning coroutine """
-    coroutines = [wait_random(max_delay) for _ in range(n)]
-    result = await asyncio.gather(*coroutines)
-    return result
+asyncio.run(main())
