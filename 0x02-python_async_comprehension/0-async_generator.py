@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import asyncio
 import random
+from typing import Generator
 """ this script defines async generator """
 
 
