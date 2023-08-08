@@ -24,3 +24,54 @@ tasks or coroutines in a way that maximizes concurrency and resource utilization
   concurrently within the same coroutine, efficiently utilizing resources.
 #### The combination of both approaches helps you design efficient asynchronous
 programs that take full advantage of concurrency.
+
+
+*************** what is the purpose of 'async generator'? *******************
+
+The purpose of an asynchronous generator is to provide a convenient and efficient way
+to lazily generate a sequence of values asynchronously, especially when dealing with
+I/O-bound operations or scenarios where you want to produce and consume data
+in a non-blocking manner.
+
+#### Key Purposes of Asynchronous Generators:
+
+Lazy Data Generation: Asynchronous generators allow you to generate and yield values
+one at a time as they become available, without needing to generate and store all
+values upfront. This is particularly useful when dealing with large datasets or
+I/O-bound operations.
+
+Non-Blocking: Asynchronous generators leverage the capabilities of asynchronous
+programming to perform operations concurrently without blocking the event loop.
+This enables efficient resource utilization and responsiveness.
+
+Concurrent Data Consumption: Asynchronous generators can be consumed asynchronously,
+meaning you can iterate over them while performing other asynchronous tasks concurrently.
+This enables better utilization of CPU and I/O resources.
+
+###### Concurrency in Asynchronous Generators:
+
+Asynchronous generators inherently support concurrent execution.
+When you await an asynchronous operation within an asynchronous generator,
+it doesn't block the entire generator; instead, it yields control back to the event loop,
+allowing other tasks (including other instances of the generator) to execute.
+This concurrent execution is one of the core benefits of asynchronous programming.
+
+##### Advantages over create_task and await:
+
+Asynchronous generators offer unique advantages compared to using create_task and await directly:
+
+Resource Efficiency: Asynchronous generators allow you to yield values as they're ready, ensuring
+efficient memory usage, especially for large datasets.
+
+Concurrent Data Production and Consumption: Asynchronous generators can produce data concurrently
+while you're consuming it, ensuring both sides of the process can work efficiently.
+
+Controlled Flow: Asynchronous generators provide a structured way to encapsulate asynchronous logic
+and data generation, making code more organized and readable.
+
+Simplified Code: Asynchronous generators eliminate the need to manually manage multiple tasks with 
+create_task or separate await statements. The generator handles the sequencing for you.
+
+In summary, asynchronous generators provide a powerful way to generate, produce, and consume data
+concurrently in an asynchronous programming context. They offer efficient memory usage, better
+resource utilization, and more structured code compared to using create_task and await directly.
