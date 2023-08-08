@@ -1,0 +1,26 @@
+******** await vs creat_user() ***********************
+
+
+---> await Supports Concurrency Across Coroutines: When you use await within
+different instances of asynchronous coroutines, you're allowing the event loop
+to interleave their execution, achieving concurrency. Different coroutines can
+run in parallel, and the event loop switches between them during asynchronous
+operations (like I/O or await).
+
+---> asyncio.create_task() Supports Concurrency Within Same Coroutine: When you
+use asyncio.create_task() within the same coroutine, you're creating multiple tasks
+that can run concurrently. This means that within a single coroutine, multiple tasks
+can start and run at the same time, allowing efficient use of resources and
+achieving concurrency.
+
+In both cases, the event loop plays a critical role in managing the execution of
+tasks or coroutines in a way that maximizes concurrency and resource utilization.
+
+------------> Here's a summary:
+
+# await promotes concurrency by allowing the event loop to switch between different
+  coroutines, enabling interleaved execution.
+# asyncio.create_task() promotes concurrency by allowing multiple tasks to run
+  concurrently within the same coroutine, efficiently utilizing resources.
+#### The combination of both approaches helps you design efficient asynchronous
+programs that take full advantage of concurrency.
