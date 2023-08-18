@@ -13,6 +13,10 @@ wait_random = __import__("0-basic_async_syntax").wait_random
 async def wait_n(n: int, max_delay: int) -> List[float]:
     """returning coroutine"""
     coroutines = [wait_random(max_delay) for _ in range(n)]
+    # bear in mind that the list comprehension just creates
+    # +a list of coroutine objects, not immediately executing them.
+    # The format to create coroutine object using list comprehesion is that
+    # +[coroutine() for _ in range(n)]
     delays = []
 
     return [await coroutine for coroutine in asyncio.as_completed(coroutines)]
