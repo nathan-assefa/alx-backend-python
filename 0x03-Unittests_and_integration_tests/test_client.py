@@ -28,7 +28,7 @@ class TestGithubOrgClient(unittest.TestCase):
         return the correct value based on the given payload
         """
         expected_url = "https://example.com/org/repos"
-
+ 
         # Mock the return value of the property
         mock_org.return_value = {"repos_url": expected_url}
 
@@ -38,7 +38,7 @@ class TestGithubOrgClient(unittest.TestCase):
         # Call the _public_repos_url method
         result = org_client._public_repos_url
 
-        # Assertions
+        # Assertion
         self.assertEqual(result, expected_url)
 
 
