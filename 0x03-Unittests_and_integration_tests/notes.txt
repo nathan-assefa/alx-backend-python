@@ -1,0 +1,22 @@
+**********what is the difference between
+"with patch.object(instance, 'a_method') as mock_a_method:" and "@patch.object(TestClass, 'a_method')"********
+
+----->>>> The difference between with patch.object(instance, 'a_method')
+as mock_a_method: and @patch.object(TestClass, 'a_method') lies in the scope and target of the patching.
+
+----> with patch.object(instance, 'a_method') as mock_a_method::
+This approach is used when you want to mock a specific method of a specific instance.
+In this case, you're targeting the method a_method of a particular instance (denoted by instance).
+The patching occurs only within the scope of the with statement, and you use the as keyword to
+access the mock object. This is useful when you want to isolate a specific instance and its
+method for testing.
+
+----> @patch.object(TestClass, 'a_method'):
+This approach is used when you want to patch a method at the class level. Here, you're targeting
+the method a_method within the TestClass class. The patching applies to any instance of the class
+that calls this method. The mock object is injected as an argument to the test method.
+This is useful when you want to ensure consistent behavior across all instances of the class.
+
+#### In summary, the first approach allows you to target a specific instance's method, while the
+second approach targets the method at the class level, affecting all instances. Depending on your
+testing needs, you can choose the appropriate approach to achieve the desired level of patching and isolation.
