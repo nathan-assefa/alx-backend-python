@@ -3,7 +3,7 @@
 Testing utils script
 """
 import unittest
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, PropertyMock
 from parameterized import parameterized
 from utils import access_nested_map, get_json, memoize
 
@@ -84,8 +84,9 @@ class TestMemoize(unittest.TestCase):
     def test_memoize(self):
         # Create an instance of TestClass
         instance = self.TestClass()
-
-        with patch.object(instance, 'a_method') as mock_a_method:
+        with patch.object(
+                instance, 'a_method', new_callable=PropertyMock
+                ) as mock_a_method:
             # Configure the mock method's return value
             mock_a_method.return_value = 42
 
