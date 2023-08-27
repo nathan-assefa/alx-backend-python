@@ -62,12 +62,12 @@ class TestGithubOrgClient(unittest.TestCase):
         ]
 
         # Create an instance of GithubOrgClient
-        org_client = GithubOrgClient("myorg")
+        org_client = GithubOrgClient("Gebeyahub")
 
         # Call the public_repos method
         result = org_client.public_repos()
 
-        # Assertions
+        # Let's assert the response
         expected_repos = ["repo1", "repo2", "repo3"]
         self.assertEqual(result, expected_repos)
 
@@ -76,6 +76,15 @@ class TestGithubOrgClient(unittest.TestCase):
 
         # Check if get_json was called once with the correct URL
         mock_get_json.assert_called_once_with("https://example.com/org/repos")
+
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False)
+    ])
+    def test_has_license(self, repo, license_key, expected):
+        """ unit-test for GithubOrgClient.has_license """
+        result = GithubOrgClient.has_license(repo, license_key)
+        self.assertEqual(result, expected)
 
 
 if __name__ == "__main__":
